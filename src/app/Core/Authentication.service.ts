@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class authenticationService {
-  private nameUser$ = new Subject<string>();
+  private nameUser$ = new BehaviorSubject<string>('');
 
   constructor() {}
 
