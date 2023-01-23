@@ -1,0 +1,32 @@
+<div class="container d-flex justify-content-center h-100 mt-5">
+  <div class="col-md-7">
+    <h3 class="text-center">Sign In</h3>
+    <hr />
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mt-2">
+        <label for="user">User :</label>
+        <input
+          type="text"
+          formControlName="user"
+          class="form-control"
+          id="user"
+          placeholder="User.."
+        />
+      </div>
+      <div class="form-group mt-2">
+        <label for="password">Password : </label>
+        <input
+          type="password"
+          formControlName="password"
+          class="form-control"
+          id="password"
+          placeholder="Password"
+        />
+      </div>
+      <button type="submit" class="btn btn-success mt-4">Enter</button>
+    </form>
+    <div class="pt-3">
+      <a routerLink="/sign-up" class="link-info">Sign Up</a>
+    </div>
+  </div>
+</div>
