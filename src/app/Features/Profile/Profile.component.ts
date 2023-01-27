@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { authenticationService } from 'src/app/Core/Authentication.service';
+import { authenticationService } from 'src/app/Core/authentication.service';
+import { RandomMessagePipe } from 'src/app/shared/random-message.pipe';
 
 @Component({
   selector: 'app-profile',
@@ -8,9 +9,9 @@ import { authenticationService } from 'src/app/Core/Authentication.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   name: any;
-  greetings = ['Hola', 'Buen dia', 'Eres genial'];
-  index = Math.floor(Math.random() * this.greetings.length);
-  greeting = this.greetings[this.index];
+
+  message: string[] = ['hola', 'Eres genial', 'Buen dia'];
+
   constructor(private authenticationService: authenticationService) {}
 
   ngOnInit(): void {

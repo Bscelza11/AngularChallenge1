@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { authenticationService } from 'src/app/Core/Authentication.service';
+import { authenticationService } from 'src/app/Core/authentication.service';
+import { createPasswordValidator } from 'src/app/shared/passwordValidators.directive';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +11,11 @@ import { authenticationService } from 'src/app/Core/Authentication.service';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    user: new FormControl(''),
-    password: new FormControl(''),
+    user: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      createPasswordValidator(),
+    ]),
   });
 
   constructor(
@@ -26,6 +30,7 @@ export class LoginComponent {
     ) {
       this.authenticationService.sendName(this.loginForm.value.user);
       this.router.navigate(['/profile']);
+      console.log(this.loginForm);
     } else {
       console.log('Error');
     }
