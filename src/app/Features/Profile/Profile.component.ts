@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { authenticationService } from 'src/app/Core/Authentication.service';
+import { authenticationService } from 'src/app/Core/authentication.service';
 
 @Component({
   selector: 'app-profile',
