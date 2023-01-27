@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { authenticationService } from './Core/authentication.service';
 import { NavbarComponent } from './Core/navbar/navbar.component';
-import { LoginComponent } from './Features/login/Login.component';
+import { LoginComponent } from './Features/login/login.component';
 import { RandomMessagePipe } from './shared/random-message.pipe';
 
 @NgModule({
