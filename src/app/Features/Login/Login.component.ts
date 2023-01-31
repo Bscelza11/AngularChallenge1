@@ -11,11 +11,8 @@ import { createPasswordValidator } from 'src/app/shared/passwordValidators.direc
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    user: new FormControl('', [Validators.required]),
-    password: new FormControl('', [
-      Validators.required,
-      createPasswordValidator(),
-    ]),
+    user: new FormControl(''),
+    password: new FormControl(''),
   });
 
   constructor(
