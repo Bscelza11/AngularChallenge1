@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { authenticationService } from './Core/authentication.service';
 import { NavbarComponent } from './Core/navbar/navbar.component';
 import { RegisterComponent } from './Features/register/register.component';
+import { RandomMessage } from './shared/messageRandom.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,10 @@ import { RegisterComponent } from './Features/register/register.component';
     RegisterComponent,
     ProfileComponent,
     NavbarComponent,
+    RandomMessage,
   ],
+  exports: [RandomMessage],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
