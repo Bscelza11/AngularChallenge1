@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import {  Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { authenticationService } from 'src/app/Core/authentication.service';
 
 @Component({
@@ -15,20 +15,21 @@ export class RegisterComponent {
     newPassword: new FormControl(''),
   });
 
-  constructor(private authenticationService: authenticationService,
-             private router: Router) {}
+  constructor(
+    private authenticationService: authenticationService,
+    private router: Router
+  ) {}
 
   onSubmit() {
-   
-
-      if(this.formRegister.value.email != null && this.formRegister.value.newPassword != null && this.formRegister.value.userName != null) {
-        this.authenticationService.sendName(this.formRegister.value.userName);
-        this.router.navigate(['/profile'])
-        
-      } else {
-        console.log('Error')
-        
-      }            
-    
+    if (
+      this.formRegister.value.email != null &&
+      this.formRegister.value.newPassword != null &&
+      this.formRegister.value.userName != null
+    ) {
+      this.authenticationService.sendName(this.formRegister.value.userName);
+      this.router.navigate(['/profile']);
+    } else {
+      console.log('Error');
+    }
   }
 }
