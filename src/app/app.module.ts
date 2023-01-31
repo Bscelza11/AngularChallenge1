@@ -3,34 +3,29 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './Features/Login/Login.component';
-import { RegisterComponent } from './features/register/register.component';
-import { ProfileComponent } from './Features/Profile/Profile.component';
-import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
-import { authenticationService } from './Core/Authentication.service';
-import { NavbarComponent } from './Core/Navbar/Navbar.component';
-
-
+import { LoginComponent } from './Features/login/login.component';
+import { ProfileComponent } from './Features/profile/profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { authenticationService } from './Core/authentication.service';
+import { NavbarComponent } from './Core/navbar/navbar.component';
+import { RegisterComponent } from './Features/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-    
-    
-   
+    HttpClientModule,
   ],
   providers: [authenticationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
