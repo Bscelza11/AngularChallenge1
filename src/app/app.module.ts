@@ -11,6 +11,8 @@ import { authenticationService } from './Core/authentication.service';
 import { NavbarComponent } from './Core/navbar/navbar.component';
 import { RegisterComponent } from './Features/register/register.component';
 import { RandomMessage } from './shared/messageRandom.pipe';
+import { QuestionnarieComponent } from './Features/questionnarie/questionnarie.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +21,7 @@ import { RandomMessage } from './shared/messageRandom.pipe';
     ProfileComponent,
     NavbarComponent,
     RandomMessage,
+    QuestionnarieComponent,
   ],
   exports: [RandomMessage],
 

@@ -1,0 +1,9 @@
+input:focus {
+  background-color: rgb(225, 238, 207);
+}
+select:focus {
+  background-color: rgb(225, 238, 207);
+}
+textarea:focus {
+  background-color: rgb(225, 238, 207);
+}

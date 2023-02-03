@@ -2,18 +2,35 @@
   <div class="col-md-7">
     <h3 class="text-center">Sign In</h3>
     <hr />
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <div class="form-group mt-2">
-        <label for="user">User :</label>
-        <input
-          type="text"
-          formControlName="user"
-          class="form-control"
-          id="user"
-          placeholder="User.."
-        />
+
+    <form [formGroup]="loginForm" #form="ngForm" (ngSubmit)="onSubmit()">
+      <div [hidden]="form.submitted">
+        <div
+          class="cross-validation"
+          [class.cross-validation-error]="loginForm.errors?.['passwordValidators'] && (loginForm.touched || loginForm.dirty)"
+        >
+          <div class="form-group">
+            <label for="user">User :</label>
+            <input
+              type="text"
+              formControlName="user"
+              class="form-control"
+              id="user"
+              placeholder="User.."
+              required
+            />
+
+            <div
+              *ngIf="user.invalid && user.touched"
+              class="alert alert-danger mt-2"
+            >
+              <div *ngIf="user.errors?.['required']">Name is required</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group mt-2">
+
+      <div class="form-group">
         <label for="password">Password : </label>
         <input
           type="password"
@@ -21,9 +38,26 @@
           class="form-control"
           id="password"
           placeholder="Password"
+          required
         />
       </div>
-      <button type="submit" class="btn btn-success mt-4">Enter</button>
+      <div
+        *ngIf="password.invalid && password.touched"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="password.errors?.['required']">Password is required</div>
+        <div *ngIf="password.errors?.['passwordValidators']">
+          Check your password
+        </div>
+      </div>
+
+      <button
+        [disabled]="loginForm.invalid"
+        type="submit"
+        class="btn btn-success mt-4"
+      >
+        Enter
+      </button>
     </form>
     <div class="pt-3">
       <a routerLink="/sign-up" class="link-info">Sign Up</a>

@@ -2,6 +2,7 @@
   <div class="col-lg-7">
     <h3 class="text-center">Sign Up</h3>
     <hr />
+
     <form [formGroup]="formRegister" (ngSubmit)="onSubmit()">
       <div class="form-group mt-2">
         <label for="userName">Name : </label>
@@ -11,7 +12,18 @@
           class="form-control"
           id="userName"
           placeholder="Name"
+          required
         />
+      </div>
+
+      <div
+        *ngIf="userName.invalid && (userName.touched || userName.dirty)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="userName.errors?.['required']">Username is required</div>
+        <div *ngIf="userName.errors?.['minLength']">
+          Username cannot be less than 3 digits
+        </div>
       </div>
       <div class="form-group mt-2">
         <label for="email">Email : </label>
@@ -24,6 +36,17 @@
           placeholder="Enter email"
         />
       </div>
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['email']">Please enter valid email</div>
+        <div *ngIf="email.errors?.['minLenght']">
+          Email cannot be less than 6 digits
+        </div>
+      </div>
+
       <div class="form-group mt-2">
         <label for="newPassword">Password :</label>
         <input
@@ -34,7 +57,60 @@
           placeholder="Password"
         />
       </div>
-      <button type="submit" class="btn btn-success mt-4">Submit</button>
+      <div
+        *ngIf="
+          newPassword.invalid && (newPassword.dirty || newPassword.touched)
+        "
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="newPassword.errors?.['required']">Password is required</div>
+        <div *ngIf="newPassword.errors?.['passwordValidators']">
+          <b>Please enter a valid password. </b>
+          <br />
+          <small>
+            The password should be at least 6 characters and must contain at
+            least: 1 number, 1 lowercase, 1 uppercase.
+          </small>
+        </div>
+      </div>
+
+      <div class="form-group mt-2">
+        <label for="confirmPassword">Confirm Password :</label>
+        <input
+          type="password"
+          formControlName="confirmPassword"
+          class="form-control"
+          id="confirmPassword"
+          placeholder="Confirm password"
+          required
+        />
+      </div>
+      <div
+        *ngIf="
+          confirmPassword.invalid &&
+          (confirmPassword.dirty || confirmPassword.touched)
+        "
+        class="alert alert-danger mt-2"
+      >
+        <div *ngIf="confirmPassword.errors?.['required']">
+          Confirm password is required
+        </div>
+      </div>
+
+      <div
+        *ngIf="formRegister.errors?.['passwordMatch'] && (formRegister.touched || formRegister.dirty)"
+        class="cross-validation-error-message alert alert-danger mt-2"
+      >
+        Passwords do not match
+      </div>
+
+      <button
+        [disabled]="formRegister.invalid"
+        type="submit"
+        class="btn btn-success mt-4"
+      >
+        Submit
+      </button>
     </form>
     <div class="pt-3">
       <a routerLink="/sign-in" class="link-info">Sign In</a>

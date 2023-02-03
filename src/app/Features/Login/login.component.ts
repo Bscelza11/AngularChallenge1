@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { authenticationService } from 'src/app/Core/authentication.service';
+import { passwordValidators } from 'src/app/shared/passwordValidators.directive';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,21 @@ import { authenticationService } from 'src/app/Core/authentication.service';
 })
 export class LoginComponent {
   loginForm = new FormGroup({
-    user: new FormControl(''),
-    password: new FormControl(''),
+    user: new FormControl('', Validators.required),
+    password: new FormControl('', [
+      Validators.required,
+      passwordValidators(),
+      Validators.minLength(6),
+    ]),
   });
+
+  get user() {
+    return this.loginForm.get('user')!;
+  }
+
+  get password() {
+    return this.loginForm.get('password')!;
+  }
 
   constructor(
     private router: Router,

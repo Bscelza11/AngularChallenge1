@@ -1,0 +1,109 @@
+<div class="d-flex row justify-content-center">
+  <form class="col-4" [formGroup]="detailsForm" #form="ngForm">
+    <h1 class="text-center text-success">Details</h1>
+    <hr />
+    <ng-container *ngFor="let control of jsonFormDataDetails?.controls">
+      <div class="form-group mt-2">
+        <label class="block mt-6" for="{{ control.name }}">{{
+          control.label
+        }}</label>
+        <input
+          *ngIf="
+            ['text', 'password', 'email', 'number', 'tel', 'url'].includes(
+              control.type
+            )
+          "
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+          class="form-control border-success"
+        />
+        <div>
+          <input
+            *ngIf="control.type === 'checkbox'"
+            [type]="control.type"
+            [formControlName]="control.name"
+            [value]="control.value"
+            class="form-check-input align-items-start border-success"
+            (click)="toggleCheckbox()"
+          />
+        </div>
+        <textarea
+          *ngIf="control.type === 'textarea'"
+          [formControlName]="control.name"
+          [value]="control.value"
+          class="form-control border-success"
+        ></textarea>
+        <select
+          *ngIf="control.type === 'select'"
+          [formControlName]="control.name"
+          [value]="control.value"
+          class="form-control border-success"
+        >
+          <option
+            *ngFor="let option of control.options; let i = index"
+            [value]="option"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+    </ng-container>
+    <button
+      class="btn btn-success mt-4"
+      type="submit"
+      (click)="submitDetailsForm()"
+    >
+      Send
+    </button>
+  </form>
+
+  <form
+    class="col-4"
+    [formGroup]="addressForm"
+    #form="ngForm"
+    (ngSubmit)="onSubmit()"
+  >
+    <h1 class="text-center text-success">Address</h1>
+    <hr />
+    <ng-container *ngFor="let item of jsonFormDataAddress?.controls">
+      <div class="form-group mt-2">
+        <label class="block mt-6" for="{{ item.name }}">{{ item.label }}</label>
+        <input
+          *ngIf="
+            [
+              'text',
+              'password',
+              'email',
+              'number',
+              'checkbox',
+              'tel',
+              'url'
+            ].includes(item.type)
+          "
+          [type]="item.type"
+          [formControlName]="item.name"
+          [value]="item.value"
+          class="form-control border-success"
+        />
+        <textarea
+          *ngIf="item.type === 'textarea'"
+          [formControlName]="item.name"
+          [value]="item.value"
+          class="form-control border-success"
+        ></textarea>
+        <select
+          *ngIf="item.type === 'select'"
+          [formControlName]="item.name"
+          [value]="item.value"
+          class="form-control form-select border-success"
+        >
+          <option *ngFor="let option of item.options" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+    </ng-container>
+    <button class="btn btn-success mt-4" type="submit">Send</button>
+  </form>
+</div>
